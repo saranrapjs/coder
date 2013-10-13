@@ -146,7 +146,7 @@ var startSSL = function() {
     }
     
     if ( privateKey !== "" && certificate !== "" ) {
-        https.createServer({ key: privateKey, cert: certificate }, sslapp).listen( config.listenPort, config.listenIP );
+        http.createServer(sslapp).listen( config.listenPort, config.listenIP );
     } else {
         var spawn = require('child_process').spawn;
         
@@ -170,7 +170,7 @@ var startSSL = function() {
         var loadServer = function() {
             privateKey = fs.readFileSync('certs/server.key').toString();
             certificate = fs.readFileSync('certs/server.cert').toString();
-            https.createServer({ key: privateKey, cert: certificate }, sslapp).listen( config.listenPort, config.listenIP );
+            http.createServer(sslapp).listen( config.listenPort, config.listenIP );
         };
 
         genSelfSignedCert();
